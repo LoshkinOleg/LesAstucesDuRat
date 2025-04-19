@@ -1,0 +1,23 @@
+Usinage:
+  - title: "TestUsineurC"
+    description: "Description C"
+  - title: "TestUsineurA"
+    description: "Description A"
+  - title: "TestUsineurB"
+    description: "Description B"
+
+Sites de pièces détachées:
+  - title: "CasseC"
+    description: "Description C"
+  - title: "CasseA"
+    description: "Description A"
+  - title: "CasseB"
+    description: "Description B"
+
+Durites:
+  - title: "DuritesC"
+    description: "Description C"
+  - title: "DuritesA"
+    description: "Description A"
+  - title: "DuritesB"
+    description: "Description B"

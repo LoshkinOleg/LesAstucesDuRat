@@ -1,0 +1,44 @@
+LesAstucesDuRat/
+├─ .github
+│  ├─ CONTRIBUTING.md
+│  │  ├─ ""
+│  └─ workflows
+│     └─ jekyll.yml
+│        ├─ "# This workflow uses actions that are not certified by GitHub.\n# They are provided by a third-party and are governed by\n# separate terms of service, privacy policy, and support\n# documentation.\n\n# Sample workflow for building and deploying a Jekyll site to GitHub Pages\nname: Deploy Jekyll site to Pages\n\non:\n  # Runs on pushes targeting the default branch\n  push:\n    branches: ["main"]\n  pull_request:\n    branches: ["main"]\n\n  # Allows you to run this workflow manually from the Actions tab\n  workflow_dispatch:\n\n# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages\npermissions:\n  contents: read\n  pages: write\n  id-token: write\n\n# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.\n# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.\nconcurrency:\n  group: "pages"\n  cancel-in-progress: false\n\njobs:\n  # Build job\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: Setup Ruby\n        # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0\n        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4\n        with:\n          ruby-version: '3.1.4' # Not needed with a .ruby-version file\n          bundler-cache: true # runs 'bundle install' and caches installed gems automatically\n          cache-version: 0 # Increment this number if you need to re-download cached gems\n      - name: Setup Pages\n        id: pages\n        uses: actions/configure-pages@v5\n      - name: Build with Jekyll\n        # Outputs to the './_site' directory by default\n        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"\n        env:\n          JEKYLL_ENV: production\n      - name: Upload artifact\n        # Automatically uploads an artifact from the './_site' directory by default\n        uses: actions/upload-pages-artifact@v3\n\n  # Deployment job\n  deploy:\n    environment:\n      name: github-pages\n      url: ${{ steps.deployment.outputs.page_url }}\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - name: Deploy to GitHub Pages\n        id: deployment\n        uses: actions/deploy-pages@v4"
+├─ .ruby-gemset
+│  ├─ "jekyll-site"
+├─ .ruby-version
+│  ├─ "3.1.4"
+├─ Gemfile
+│  ├─ "source "https://rubygems.org"\n\nruby "3.1.4"\n\ngem "jekyll", "~> 4.3"\ngem "minima", "~> 2.5"\ngem 'wdm', '>= 0.1.0' if Gem.win_platform?\n\n# Optional useful plugins (also supported by minima):\ngem "jekyll-seo-tag", "~> 2.8""
+├─ Gemfile.lock
+│  ├─ "GEM\n  remote: https://rubygems.org/\n  specs:\n    addressable (2.8.7)\n      public_suffix (>= 2.0.2, < 7.0)\n    base64 (0.2.0)\n    bigdecimal (3.1.9)\n    colorator (1.1.0)\n    concurrent-ruby (1.3.5)\n    csv (3.3.4)\n    em-websocket (0.5.3)\n      eventmachine (>= 0.12.9)\n      http_parser.rb (~> 0)\n    eventmachine (1.2.7)\n    ffi (1.17.2-x64-mingw-ucrt)\n    forwardable-extended (2.6.0)\n    google-protobuf (4.30.2-x64-mingw-ucrt)\n      bigdecimal\n      rake (>= 13)\n    http_parser.rb (0.8.0)\n    i18n (1.14.7)\n      concurrent-ruby (~> 1.0)\n    jekyll (4.4.1)\n      addressable (~> 2.4)\n      base64 (~> 0.2)\n      colorator (~> 1.0)\n      csv (~> 3.0)\n      em-websocket (~> 0.5)\n      i18n (~> 1.0)\n      jekyll-sass-converter (>= 2.0, < 4.0)\n      jekyll-watch (~> 2.0)\n      json (~> 2.6)\n      kramdown (~> 2.3, >= 2.3.1)\n      kramdown-parser-gfm (~> 1.0)\n      liquid (~> 4.0)\n      mercenary (~> 0.3, >= 0.3.6)\n      pathutil (~> 0.9)\n      rouge (>= 3.0, < 5.0)\n      safe_yaml (~> 1.0)\n      terminal-table (>= 1.8, < 4.0)\n      webrick (~> 1.7)\n    jekyll-feed (0.17.0)\n      jekyll (>= 3.7, < 5.0)\n    jekyll-sass-converter (3.1.0)\n      sass-embedded (~> 1.75)\n    jekyll-seo-tag (2.8.0)\n      jekyll (>= 3.8, < 5.0)\n    jekyll-watch (2.2.1)\n      listen (~> 3.0)\n    json (2.10.2)\n    kramdown (2.5.1)\n      rexml (>= 3.3.9)\n    kramdown-parser-gfm (1.1.0)\n      kramdown (~> 2.0)\n    liquid (4.0.4)\n    listen (3.9.0)\n      rb-fsevent (~> 0.10, >= 0.10.3)\n      rb-inotify (~> 0.9, >= 0.9.10)\n    mercenary (0.4.0)\n    minima (2.5.2)\n      jekyll (>= 3.5, < 5.0)\n      jekyll-feed (~> 0.9)\n      jekyll-seo-tag (~> 2.1)\n    pathutil (0.16.2)\n      forwardable-extended (~> 2.6)\n    public_suffix (6.0.1)\n    rake (13.2.1)\n    rb-fsevent (0.11.2)\n    rb-inotify (0.11.1)\n      ffi (~> 1.0)\n    rexml (3.4.1)\n    rouge (4.5.1)\n    safe_yaml (1.0.5)\n    sass-embedded (1.86.3-x64-mingw-ucrt)\n      google-protobuf (~> 4.30)\n    terminal-table (3.0.2)\n      unicode-display_width (>= 1.1.1, < 3)\n    unicode-display_width (2.6.0)\n    wdm (0.2.0)\n    webrick (1.9.1)\n\nPLATFORMS\n  x64-mingw-ucrt\n\nDEPENDENCIES\n  jekyll (~> 4.3)\n  jekyll-seo-tag (~> 2.8)\n  minima (~> 2.5)\n  wdm (>= 0.1.0)\n\nRUBY VERSION\n   ruby 3.1.4p223\n\nBUNDLED WITH\n   2.5.22"
+├─ README.md
+│  ├─ "# LesAstucesDuRat"
+├─ _advices
+│  └─ advices_page.md
+│     ├─ "---\ntitle: "Staying Secure Online"\nlayout: post\n---\n\nTips and tools to protect your online activity."
+├─ _config.yml
+│  ├─ "title: Les Astuces du Rat\ndescription: Résumé des astuces et références de Ultimate Making et autres.\nauthor: "Les Gouziniers du Pompounet"\ntheme: minima\n\nplugins:\n  - jekyll-seo-tag\n\n# Build settings\nmarkdown: kramdown\nhighlighter: rouge\n\ncollections:\n  professionals_and_websites:\n    output: true\n  advices:\n    output: true\n  hardware:\n    output: true\n\nexclude:\n  - projectDiagram.txt\n  - projectDiagramGenerator.py\n  - README.md"
+├─ _data
+│  └─ professionals_and_websites.yml
+│     ├─ "Usinage:\n  - title: "TestUsineurC"\n    description: "Description C"\n- title: "TestUsineurA"\n    description: "Description A"\n- title: "TestUsineurB"\n    description: "Description B"\n\nSites de pièces détachées:\n  - title: "CasseC"\n    description: "Description C"\n  - title: "CasseA"\n    description: "Description A"\n  - title: "CasseB"\n    description: "Description B"\n\nDurites:\n  - title: "DuritesC"\n    description: "Description C"\n  - title: "DuritesA"\n    description: "Description A"\n  - title: "DuritesB"\n    description: "Description B""
+├─ _hardware
+│  └─ hardware_page.md
+│     ├─ "---\ntitle: "Best Budget Laptop Setups"\nlayout: post\n---\n\nAffordable hardware options for work and play."
+├─ _professionals_and_websites
+│  └─ professionals_and_websites_page.md
+│     ├─ "---\ntitle: "Professionels et Sites Web"\nlayout: page\n---\n\n{% assign categories = site.data.professionals_and_websites | sort %}\n\n<div style="display: flex; flex-wrap: wrap; gap: 2rem;">\n\n  {% for category in categories %}\n    <div style="flex: 1 1 300px; min-width: 300px;">\n      <h2>{{ category[0] }}</h2>\n      <ul>\n        {% assign entries = category[1] | sort: "title" %}\n        {% for entry in entries %}\n          <li>\n            <strong>{{ entry.title }}</strong><br>\n            {{ entry.description }}\n          </li>\n        {% endfor %}\n      </ul>\n    </div>\n  {% endfor %}\n\n</div>"
+├─ advices.md
+│  ├─ "---\nlayout: none\npermalink: /advices/\n---\n\n<meta http-equiv="refresh" content="0; url=/advices/advices_page.html">\n<link rel="canonical" href="/advices/advices_page.html">"
+├─ assets
+│  └─ charteDuRat.jpeg
+│     ├─ ...
+├─ favicon.ico
+│  ├─ ""
+├─ hardware.md
+│  ├─ "---\nlayout: none\npermalink: /hardware/\n---\n\n<meta http-equiv="refresh" content="0; url=/hardware/hardware_page.html">\n<link rel="canonical" href="/hardware/hardware_page.html">"
+├─ index.md
+│  ├─ "---\nlayout: home\ntitle: Le Rat\n---\n\n![My Image](/assets/charteDuRat.jpeg)\n\n### Il te faut quoi?\n\n- [Professionels et Sites Web](/professionals_and_websites/)\n- [Astuces](/advices/)\n- [Matos](/hardware/)"
+├─ professionals_and_websites.md
+│  ├─ "---\nlayout: none\npermalink: /professionals_and_websites/\n---\n\n<meta http-equiv="refresh" content="0; url=/professionals_and_websites/professionals_and_websites_page.html">\n<link rel="canonical" href="/professionals_and_websites/professionals_and_websites_page.html">"

@@ -1,0 +1,28 @@
+title: Les Astuces du Rat
+description: Résumé des astuces et références de Ultimate Making et autres.
+author: "Les Gouziniers du Pompounet"
+theme: minima
+
+plugins:
+  - jekyll-seo-tag
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+collections:
+  professionals_and_websites:
+    output: true
+  advices:
+    output: true
+  hardware:
+    output: true
+
+exclude:
+  - projectDiagram.txt
+  - projectDiagramGenerator.py
+  - README.md
+
+minima:
+  include_css:
+    - /assets/custom_home.css
